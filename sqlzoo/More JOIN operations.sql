@@ -24,8 +24,8 @@ FROM (
   ) AS tab JOIN actor ON tab.actorid=actor.id
 ORDER BY actor.name
 
--- Notes
--- + Must name subqueries in order to use them!
+-- Notes:
+--> Must name subqueries in order to use them!
 
 
 -- 14. List the films released in the year 1978 ordered by the number of actors in the cast, then by title.
@@ -47,8 +47,8 @@ FROM (
 GROUP BY title
 ORDER BY num_actors DESC, title 
 
--- Notes
--- + Apparently ordered by meant descending, but only for actors
+-- Notes:
+--> Apparently ordered by meant descending, but only for actors
 
 
 -- 15. List all the people who have worked with 'Art Garfunkel'.
@@ -76,6 +76,8 @@ WHERE casting.movieid IN (
     ) AND actor.name != 'Art Garfunkel'
 ORDER BY name
 
--- Get art's actor id
--- getting movies that have art's id
--- 
+-- Notes:
+--> Note that we don't want to include Art G. in our results! We only want to know who worked with him
+--> Order by useful here
+--> Add disctinct to remove duplicate names (what if someone is a producer and actor?)
+--> Could remove Art in the join statement too?
