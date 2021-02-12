@@ -1,3 +1,8 @@
+-- SQLzoo: More JOIN operations
+-- Link: https://sqlzoo.net/wiki/More_JOIN_operations
+-- Tables: movie, actor, casting
+
+
 -- 13. Actors with 15 leading roles
 -- Obtain a list, in alphabetical order, of actors who've had at least 15 starring roles.
 
@@ -21,4 +26,26 @@ ORDER BY actor.name
 
 -- Notes
 -- + Must name subqueries in order to use them!
--- 
+
+-- 14. List the films released in the year 1978 ordered by the number of actors in the cast, then by title.
+
+-- Approach:
+-- 1. Filter movie id by year
+-- 2. Join to casting 
+-- 3. Count actors by movie id
+-- 4. Order by actor count, movie title
+
+-- Answer:
+ 
+SELECT title, COUNT(actorid) AS num_actors
+FROM (
+    SELECT title,id
+        FROM movie 
+    WHERE yr = 1978
+    ) AS movie_1978 JOIN casting ON movie_1978.id=casting.movieid
+GROUP BY title
+ORDER BY num_actors DESC, title 
+
+-- Notes
+-- + Apparently ordered by meant descending, but only for actors
+
