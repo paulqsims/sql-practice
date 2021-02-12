@@ -1,6 +1,11 @@
 -- 13. Actors with 15 leading roles
 -- Obtain a list, in alphabetical order, of actors who've had at least 15 starring roles.
 
+-- Approach:
+-- 1. Get the number of starring roles per actor
+-- 2. Filter by >= 15 and ord 1 for starring
+-- 3. Join subquery of casting with actor tables on actor id to get actor name 
+-- 4. Order by actor name 
 
 -- Answer: 
 
