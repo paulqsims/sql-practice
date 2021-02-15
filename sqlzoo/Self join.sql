@@ -2,6 +2,9 @@
 -- Link: https://sqlzoo.net/wiki/Self_join
 -- Tables: Edinburgh Buses - stops, route
 
+----------
+-- Summary
+----------
 
 -- 1. How many stops are in the database.
 
@@ -50,5 +53,9 @@ WHERE route.num = '4' AND route.company = 'LRT'
 -- Notes:
 --> Note the quotation marks around the bus number!
 
+
+-------------------
+-- Routes and stops
+-------------------
 
 -- 4. 
