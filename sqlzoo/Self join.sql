@@ -121,3 +121,35 @@ WHERE stopa.name='Craiglockhart' AND stopb.name='London Road'
 
 -- Notes:
 --> Remember that OG table column references are maintained even after joining and you can reference them again later!
+
+--------------------
+-- Using a self join
+--------------------
+
+-- 7. Give a list of all the services which connect stops 115 and 137 ('Haymarket' and 'Leith')
+
+-- Approach:
+-- 1. Services = bus number and company, so I need these in the select
+-- 2. I need to filter routes by 115 and 137 for arriving and going with a self join
+
+-- Answer:
+
+SELECT DISTINCT a.company, a.num
+FROM route a JOIN route b ON (a.num=b.num AND a.company=b.company)
+WHERE a.stop = 115 AND b.stop = 137
+
+-- Notes:
+--> Keep in mind that the self join where imposes a filter on both stop columns so you don't need OR statement 
+
+
+-- 8. Give a list of the services which connect the stops 'Craiglockhart' and 'Tollcross'
+
+-- Approach:
+-- 1. Self join on route to get connections
+-- 2. Join 1 to 
+
+
+-- Answer:
+
+
+
