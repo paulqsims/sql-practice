@@ -159,6 +159,20 @@ FROM route a JOIN route b ON (a.company=b.company AND a.num=b.num)
 WHERE stopsa.name = 'Craiglockhart' AND stopsb.name = 'Tollcross'
 
 
--- 9. 
+-- 9. Give a distinct list of the stops which may be reached from 'Craiglockhart' by taking one bus, including 'Craiglockhart' itself, offered by the LRT company. Include the company and bus no. of the relevant services.
 
+
+-- Approach:
+-- 1. Self join route
+-- 2. Join with stops to get names
+-- 3. Filter by craiglockhart in first route and LRT company
+-- 4. Select company and bus number and stops from route b
+
+-- Answer:
+
+SELECT DISTINCT stopsb.name,a.company, a.num
+FROM route a JOIN route b ON (a.company=b.company AND a.num=b.num)
+             JOIN stops stopsa ON (stopsa.id=a.stop) 
+             JOIN stops stopsb ON (stopsb.id=b.stop)
+WHERE stopsa.name='Craiglockhart' AND a.company = 'LRT' AND b.company = 'LRT'
 
