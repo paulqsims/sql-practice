@@ -146,10 +146,19 @@ WHERE a.stop = 115 AND b.stop = 137
 
 -- Approach:
 -- 1. Self join on route to get connections
--- 2. Join 1 to 
-
+-- 2. Join 1 to stops table and get names
+-- 3. Filter by names
+-- 4. Select company and bus number
 
 -- Answer:
 
+SELECT a.company,a.num
+FROM route a JOIN route b ON (a.company=b.company AND a.num=b.num)
+             JOIN stops stopsa ON (a.stop=stopsa.id)
+             JOIN stops stopsb ON (b.stop=stopsb.id)
+WHERE stopsa.name = 'Craiglockhart' AND stopsb.name = 'Tollcross'
+
+
+-- 9. 
 
 
