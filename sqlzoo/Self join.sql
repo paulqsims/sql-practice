@@ -76,3 +76,25 @@ HAVING COUNT(*) = 2
 
 -- Notes:
 --> Remember, you can put aggregate functions in WHERE and HAVING statements, but will have to include them in the SELECT statement as well
+--> Can't create new count column (with a name) and then use that name in HAVING since it's created at the end, After having has been executed!
+
+
+-- 5. Execute the self join shown and observe that b.stop gives all the places you can get to from Craiglockhart, without changing routes. Change the query so that it shows the services from Craiglockhart to London Road.
+
+SELECT a.company, a.num, a.stop, b.stop
+FROM route a JOIN route b ON
+  (a.company=b.company AND a.num=b.num)
+WHERE a.stop=53 
+
+-- Approach:
+-- 1. a.stop is showing routes from craiglockhart, so need to restrict destinations in b.stop by filtering by b.stop = London Road (149)
+
+-- Answer:
+
+SELECT a.company, a.num, a.stop, b.stop
+FROM route a JOIN route b ON
+  (a.company=b.company AND a.num=b.num)
+WHERE a.stop=53 AND b.stop=149
+
+
+-- 6. 
