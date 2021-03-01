@@ -15,5 +15,8 @@
 -- Parent query
 -- 3. 
 -- 4. 
+-- Query
+-- 1. 
+-- 2.
 
 -- Answer:
