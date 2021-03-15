@@ -176,3 +176,33 @@ FROM route a JOIN route b ON (a.company=b.company AND a.num=b.num)
              JOIN stops stopsb ON (stopsb.id=b.stop)
 WHERE stopsa.name='Craiglockhart' AND a.company = 'LRT' AND b.company = 'LRT'
 
+
+-- 10. Find the routes involving two buses that can go from Craiglockhart to Lochend. Show the bus no. and company for the first bus, the name of the stop for the transfer, and the bus no. and company for the second bus.
+
+-- Approach:
+-- 1. Self join routes for Craiglockhart AND for Lochend (so two self joins
+-- 2. Join the two self joins to each other
+-- 2. Join with stops for stop names
+-- 3. Filter by stop names
+-- 4. Select bus number, company, stop name, bus number, company 
+
+-- Answer:
+https://blog.frutbunn.co.uk/most-of-the-answers-to-sql-zoo
+
+SELECT a.num, a.company
+FROM route a JOIN route b ON (a.num=b.num AND a.company=b.company)
+             JOIN route c ON (c.num=b.num AND c.company=b.company) 
+             JOIN route d ON (d.num=c.num AND d.company=c.company)
+             JOIN stops stopsa ON stopsa.id=a.stop
+             JOIN stops stopsb ON stopsb.id=b.stop
+             JOIN stops stopsc ON stopsc.id=c.stop
+             JOIN stops stopsd ON stopsd.id=d.stop
+WHERE stopsa.name = 'Craiglockhart' 
+    AND stopsd.name = 'Lochend'
+    AND stopsb.name = stopsc.name
+
+-- Notes:
+--> We need to find the bus routes (plural!) that overlap for the Craiglockhart and Lochend 
+--> Have to get the list of all possible routes for Craiglockhart and Lochend separately
+--> Filter by matching routes
+--> Select columns
